@@ -1,0 +1,50 @@
+version: 2
+
+models:
+  - name: fct_orders
+    description: >
+      One row per valid order with customer and product details. Revenue rule: order_revenue is quantity times
+      price for every order, and recognized_revenue counts only completed orders. Pending and shipped orders are
+      not revenue yet, and cancelled orders never are.
+    columns:
+      - name: order_id
+        data_tests: [unique, not_null]
+      - name: customer_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_customers')
+                field: customer_id
+      - name: product_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_products')
+                field: product_id
+      - name: order_revenue
+        data_tests: [not_null, positive]
+      - name: recognized_revenue
+        description: Order revenue for completed orders, 0 for pending, shipped and cancelled orders.
+        data_tests: [not_null]
+
+  - name: mart_customer_summary
+    description: >
+      One row per customer with total orders and spending. total_spent counts completed orders only. Pending and
+      shipped orders are counted in open_orders, cancelled orders in cancelled_orders, and none of them add spending.
+    columns:
+      - name: customer_id
+        data_tests: [unique, not_null]
+      - name: total_spent
+        data_tests: [not_null]
+
+  - name: mart_category_sales
+    description: >
+      One row per product category. Order counts and revenue use completed orders only. Open (pending, shipped) and
+      cancelled orders are shown in their own columns and add no revenue.
+    columns:
+      - name: category
+        data_tests: [unique, not_null]
+      - name: revenue
+        data_tests: [not_null]

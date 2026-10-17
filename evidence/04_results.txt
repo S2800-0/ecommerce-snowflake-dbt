@@ -1,0 +1,47 @@
+-- STAGING: orders that were kept out, and why
++-------------------------------------------------------------------------------+
+| ORDER_ID | CUSTOMER_ID | PRODUCT_ID | QUANTITY | STATUS    | REJECTION_REASON |
+|----------+-------------+------------+----------+-----------+------------------|
+| 21       | 118         | 23         | 4        | pending   | duplicate_order  |
+| 37       | 30          | 10         | None     | shipped   | invalid_quantity |
+| 94       | 9999        | 9          | 3        | completed | unknown_customer |
+| 101      | 38          | 8          | 4        | completed | duplicate_order  |
+| 188      | 77          | 17         | None     | cancelled | invalid_quantity |
+| 271      | 48          | 9999       | 4        | shipped   | unknown_product  |
+| 415      | 96          | 6          | -2       | shipped   | invalid_quantity |
+| 603      | 5           | 3          | 2        | completed | duplicate_order  |
+| 610      | 9           | 20         | 0        | completed | invalid_quantity |
++-------------------------------------------------------------------------------+
+
+-- MARTS.MART_CATEGORY_SALES (completed orders only)
++---------------------------------------------------------------------------------------------------------------+
+| CATEGORY    | COMPLETED_ORDERS | UNITS_SOLD | REVENUE    | REVENUE_SHARE_PCT | OPEN_ORDERS | CANCELLED_ORDERS |
+|-------------+------------------+------------+------------+-------------------+-------------+------------------|
+| Computers   | 60               | 202        | 4098700.00 | 69.9              | 38          | 20               |
+| Displays    | 37               | 98         | 712800.00  | 12.2              | 23          | 12               |
+| Accessories | 111              | 317        | 417050.00  | 7.1               | 73          | 37               |
+| Storage     | 48               | 168        | 406200.00  | 6.9               | 32          | 15               |
+| Audio       | 48               | 120        | 229200.00  | 3.9               | 33          | 16               |
++---------------------------------------------------------------------------------------------------------------+
+
+-- MARTS.MART_CUSTOMER_SUMMARY (top 5 by spending)
++---------------------------------------------------------------------------------------------------------------------------+
+| CUSTOMER_ID | CUSTOMER_NAME | CITY       | TOTAL_ORDERS | COMPLETED_ORDERS | OPEN_ORDERS | CANCELLED_ORDERS | TOTAL_SPENT |
+|-------------+---------------+------------+--------------+------------------+-------------+------------------+-------------|
+| 2           | Sara Ali      | Giza       | 5            | 5                | 0           | 0                | 227250.00   |
+| 7           | Laila Mostafa | Cairo      | 5            | 5                | 0           | 0                | 227250.00   |
+| 27          | Laila Mostafa | Alexandria | 5            | 5                | 0           | 0                | 227250.00   |
+| 32          | Sara Ali      | Giza       | 5            | 5                | 0           | 0                | 227250.00   |
+| 37          | Laila Mostafa | Cairo      | 5            | 5                | 0           | 0                | 227250.00   |
++---------------------------------------------------------------------------------------------------------------------------+
+
+-- MARTS.FCT_ORDERS (sample)
++-----------------------------------------------------------------------------------------------------------------------------------------------+
+| ORDER_ID | ORDER_DATE | STATUS    | CUSTOMER_NAME  | PRODUCT_NAME                | QUANTITY | UNIT_PRICE | ORDER_REVENUE | RECOGNIZED_REVENUE |
+|----------+------------+-----------+----------------+-----------------------------+----------+------------+---------------+--------------------|
+| 1        | 2025-01-12 | shipped   | Karim Samir    | Desktop PC                  | 4        | 28000.00   | 112000.00     | 0.00               |
+| 2        | 2025-01-23 | cancelled | Youssef Khaled | Noise-Cancelling Headphones | 2        | 4200.00    | 8400.00       | 0.00               |
+| 3        | 2025-02-03 | pending   | Sara Ali       | Laptop Backpack             | 5        | 1600.00    | 8000.00       | 0.00               |
+| 4        | 2025-02-14 | completed | Hana Mahmoud   | Laptop Stand                | 3        | 600.00     | 1800.00       | 1800.00            |
+| 5        | 2025-02-25 | completed | Nour Adel      | Monitor 27-inch             | 1        | 9800.00    | 9800.00       | 9800.00            |
++-----------------------------------------------------------------------------------------------------------------------------------------------+

@@ -1,0 +1,14 @@
+$ dbt run
+2 of 10 OK created sql view model staging.stg_products ......................... [SUCCESS 1 in 0.33s]
+1 of 10 OK created sql view model staging.stg_customers ........................ [SUCCESS 1 in 0.32s]
+3 of 10 OK created sql view model staging.stg_orders ........................... [SUCCESS 1 in 0.84s]
+4 of 10 OK created sql view model staging.stg_orders_rejected .................. [SUCCESS 1 in 0.85s]
+5 of 10 OK created sql view model staging.int_orders_enriched .................. [SUCCESS 1 in 0.40s]
+7 of 10 OK created sql view model staging.int_category_revenue ................. [SUCCESS 1 in 0.39s]
+8 of 10 OK created sql view model staging.int_customer_orders .................. [SUCCESS 1 in 0.40s]
+6 of 10 OK created sql table model marts.fct_orders ............................ [SUCCESS 595 in 0.99s]
+9 of 10 OK created sql table model marts.mart_category_sales ................... [SUCCESS 5 in 0.92s]
+10 of 10 OK created sql table model marts.mart_customer_summary ................ [SUCCESS 120 in 1.18s]
+Finished running 3 table models, 7 view models in 0 hours 0 minutes and 4.84 seconds (4.84s).
+Completed successfully
+Done. PASS=10 WARN=0 ERROR=0 SKIP=0 NO-OP=0 REUSED=0 TOTAL=10

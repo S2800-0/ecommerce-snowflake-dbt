@@ -1,0 +1,11 @@
+order_id,customer_id,product_id,quantity,order_date,status
+603,5,3,2.0,2026-09-01,completed
+604,12,8,1.0,2026-09-02,completed
+605,33,15,3.0,2026-09-02,pending
+606,47,22,1.0,2026-09-03,shipped
+607,60,1,4.0,2026-09-03,cancelled
+608,81,12,2.0,2026-09-04,completed
+609,102,5,1.0,2026-09-05,completed
+610,9,20,0.0,2026-09-05,completed
+611,120,25,2.0,2026-09-06,completed
+603,5,3,2.0,2026-09-01,completed

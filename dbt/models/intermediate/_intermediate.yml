@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: int_orders_enriched
+    description: >
+      Valid orders joined with their customer and product. order_revenue is quantity times price for every order.
+      recognized_revenue is the same amount for completed orders and 0 for every other status.
+    columns:
+      - name: order_id
+        data_tests: [unique, not_null]
+      - name: order_revenue
+        data_tests: [positive]
+  - name: int_customer_orders
+    description: Order counts and completed revenue per customer who has at least one valid order.
+    columns:
+      - name: customer_id
+        data_tests: [unique, not_null]
+  - name: int_category_revenue
+    description: Completed orders, units and revenue per product category.
+    columns:
+      - name: category
+        data_tests: [unique, not_null]
